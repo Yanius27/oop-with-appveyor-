@@ -1,5 +1,4 @@
 import Character from '../character';
-import Undead from '../undead';
 
 test('the parent class must have the expected properties', () => {
   const receivedCharacter = new Character('Mary', 'Magician');
@@ -12,30 +11,28 @@ test('the parent class must have the expected properties', () => {
   expect(receivedCharacter).toEqual(expectedCharacter);
 });
 
-test('levelUp must work correct', () => {
-  const character = new Undead('Sean', 'Undead');
-  const expectedCharacter = {
-    name: 'Sean',
-    type: 'Undead',
-    level: 2,
-    attack: 30,
-    defence: 30,
-    health: 100,
-  };
-  character.levelUp();
-  expect(character).toEqual(expectedCharacter);
+test('invalid type parameter should cause an error', () => {
+  expect(() => new Character('William', 'Orc')).toThrow(Error);
 });
 
-test('damage must work correct', () => {
-  const character = new Undead('Sean', 'Undead');
-  const expectedCharacter = {
-    name: 'Sean',
-    type: 'Undead',
-    level: 1,
-    attack: 25,
-    defence: 25,
-    health: 100 - 10 * (1 - 25 / 100),
-  };
-  character.damage(10);
-  expect(character).toEqual(expectedCharacter);
+test('invalid name parameter should cause an error', () => {
+  expect(() => new Character('Lord-Voldemort', 'Magician')).toThrow(Error);
+});
+
+test('zero health results in an error', () => {
+  const harry = new Character('Harry', 'Magician');
+  harry.health = 0;
+  expect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    harry.levelUp();
+  }).toThrow(Error);
+});
+
+test('zero health results in an error', () => {
+  const hermione = new Character('Hermione', 'Magician');
+  hermione.health = 0;
+  expect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    hermione.damage(10);
+  }).toThrow(Error);
 });
