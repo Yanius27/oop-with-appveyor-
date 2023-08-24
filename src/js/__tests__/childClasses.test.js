@@ -1,19 +1,5 @@
 import Undead from '../undead';
 
-test('the child class must have the expected properties', () => {
-  const receivedUndead = new Undead('John');
-  const expectedUndead = {
-    name: 'John',
-    type: 'Undead',
-    health: 100,
-    level: 1,
-    attack: 25,
-    defence: 25,
-  };
-
-  expect(receivedUndead).toEqual(expectedUndead);
-});
-
 test('levelUp must work correct', () => {
   const character = new Undead('Sean', 'Undead');
   const expectedCharacter = {

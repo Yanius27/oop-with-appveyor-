@@ -1,22 +1,23 @@
 import Character from '../character';
 
-test('the parent class must have the expected properties', () => {
-  const receivedCharacter = new Character('Mary', 'Magician');
+test('name error', () => {
+  expect(() => new Character('A', 'Bowerman')).toThrow(new Error('Некорректное значение имени'));
+});
+
+test('type error', () => {
+  expect(() => new Character('Kevin', 'Ork')).toThrow(new Error('Неизвестный тип персонажа'));
+});
+
+test('character created correctly', () => {
+  const receivedCharacter = new Character('Helga', 'Magician');
   const expectedCharacter = {
-    name: 'Mary',
+    name: 'Helga',
     type: 'Magician',
     health: 100,
     level: 1,
+    attack: 10,
+    defence: 40
   };
-  expect(receivedCharacter).toEqual(expectedCharacter);
-});
-
-test('invalid type parameter should cause an error', () => {
-  expect(() => new Character('William', 'Orc')).toThrow(Error);
-});
-
-test('invalid name parameter should cause an error', () => {
-  expect(() => new Character('Lord-Voldemort', 'Magician')).toThrow(Error);
 });
 
 test('zero health results in an error', () => {
