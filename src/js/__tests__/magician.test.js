@@ -8,7 +8,7 @@ test('Правильно создаётся персонаж', () => {
     health: 100,
     level: 1,
     attack: 10,
-    defence: 40
+    defence: 40,
   };
   expect(receivedMagician).toEqual(expectedMagician);
 });

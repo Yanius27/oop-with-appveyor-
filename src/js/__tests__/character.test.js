@@ -15,9 +15,8 @@ test('character created correctly', () => {
     type: 'Magician',
     health: 100,
     level: 1,
-    attack: 10,
-    defence: 40
   };
+  expect(receivedCharacter).toEqual(expectedCharacter);
 });
 
 test('zero health results in an error', () => {
